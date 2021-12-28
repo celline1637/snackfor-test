@@ -5,10 +5,9 @@ import Router from './Routes';
 import GlobalStyle from './styles/GlobalStyle.js';
 import { ThemeProvider } from 'styled-components';
 import theme from './styles/theme.js';
-import media from './styles/media.js';
 
 ReactDOM.render(
-  <ThemeProvider theme={{ ...theme, ...media }}>
+  <ThemeProvider theme={{ ...theme }}>
     <GlobalStyle />
     <Router />
   </ThemeProvider>,

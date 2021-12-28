@@ -6,8 +6,6 @@ const OrderItemCard = ({ data, statusInfo }) => {
   const { delivery_status, status } = statusInfo;
   const [detailList, setDetailList] = useState();
 
-  console.log(detailList, data.id);
-
   const parseStatus = (status) => {
     switch (status) {
       case 'ORDER_READY':
@@ -37,6 +35,7 @@ const OrderItemCard = ({ data, statusInfo }) => {
 
   useEffect(() => {
     getDetailOrderList(data.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -67,11 +66,12 @@ const Wrapper = styled.div`
   ${({ theme }) => theme.flexSet('flex-start')};
   width: 100%;
   height: 100px;
+  padding: 1rem;
   border-radius: 10px;
   border: 1px solid #dbdbdb;
 
   & > img {
-    /* width: 100%; */
+    border-radius: 5px;
     height: 100%;
   }
 `;
@@ -83,9 +83,8 @@ const ProductInfoSection = styled.div`
 `;
 const DeliverInfoSection = styled.div`
   margin-left: auto;
-  & > span {
-    padding: 1rem;
-  }
+  ${({ theme }) => theme.flexSet()};
+  gap: 1rem;
 `;
 
 export default OrderItemCard;

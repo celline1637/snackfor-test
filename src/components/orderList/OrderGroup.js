@@ -24,15 +24,19 @@ const OrderGroup = ({ data }) => {
   return (
     <Wrapper>
       <Header>
-        <p>
-          주문일자 {data.registration_date.replace('T', ' ').substring(0, 16)}
+        <div>
+          <span>
+            주문일
+            <strong>
+              {data.registration_date.replace('T', ' ').substring(0, 16)}
+            </strong>
+          </span>
           <span>(주문번호 {data.uuid})</span>
-        </p>
+        </div>
         <Button color="primary" outline>
           상세보기
         </Button>
       </Header>
-
       {list?.map((el) => (
         <OrderItemCard
           key={el.id}
@@ -52,12 +56,29 @@ const Wrapper = styled.div`
   ${({ theme }) => theme.flexColumnSet()};
   gap: 1rem;
   padding: 2rem 0.4rem;
-  &:not(:last-child) {
-    border-bottom: 1px solid gray;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid #dbdbdb;
   }
 `;
+
 const Header = styled.div`
   width: 100%;
+
+  & > div {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    white-space: nowrap;
+    & > span {
+      & > strong {
+        font-weight: bold;
+      }
+    }
+    & > span {
+      font-size: 0.88rem;
+    }
+  }
 
   ${({ theme }) => theme.flexSet('space-between')};
 `;
